@@ -1,3 +1,5 @@
+import { Schema } from 'admin-bro-firebase';
+
 export const userSchema: Schema = {
   name: 'string',
   age: 'number',

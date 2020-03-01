@@ -4,13 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.tsx' --exec 'ts-node' src/server.ts",
-    "lint": "eslint src --ext ts,tsx"
+    "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/server.ts",
+    "lint": "eslint src --ext ts"
   },
   "dependencies": {
     "admin-bro": "^2.0.0-beta.29",
     "admin-bro-expressjs": "^2.0.0-beta.1",
-    "admin-bro-firebase": "../",
+    "admin-bro-firebase": "^1.0.9",
     "express": "^4.17.1",
     "express-formidable": "^1.2.0",
     "firebase": "^7.9.3",

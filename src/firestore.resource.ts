@@ -11,28 +11,28 @@ import DocumentData = firebase.firestore.DocumentData;
 class FirestoreResource extends BaseResource {
   private static DB_TYPE = 'Firestore';
 
-  private readonly resourceId: string;
+  private readonly collectionId: string;
   private readonly schema: Schema;
 
   private baseResourceFactory: BaseRecordFactory;
   private repository: FirestoreRepository;
 
-  constructor({ resource, schema }) {
-    super(resource);
-    this.resourceId = resource.id;
+  constructor({ collection, schema }) {
+    super(collection);
+    this.collectionId = collection.id;
     this.schema = schema;
     this.baseResourceFactory = new BaseRecordFactory(this, this.schema);
-    this.repository = firestoreRepository(resource);
+    this.repository = firestoreRepository(collection);
 
     this.toBaseRecord = this.toBaseRecord.bind(this);
   }
 
-  static isAdapterFor({ resource }): boolean {
-    return resource.firestore;
+  static isAdapterFor(resource): boolean {
+    return resource?.collection?.firestore;
   }
 
   id(): string {
-    return this.resourceId;
+    return this.collectionId;
   }
 
   databaseName(): string {
