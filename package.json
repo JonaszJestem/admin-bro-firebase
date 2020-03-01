@@ -1,0 +1,34 @@
+{
+  "name": "admin-bro-firebase",
+  "version": "1.0.5",
+  "description": "Firebase adapter for admin-bro",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "dev": "tsc --watch",
+    "lint": "eslint . --ext .ts",
+    "style": "prettier --write 'src/**/*.ts'",
+    "prepare": "tsc"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.21.0",
+    "@typescript-eslint/parser": "^2.21.0",
+    "admin-bro": "^2.0.0-beta.29",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "firebase": "^7.9.3",
+    "prettier": "^1.19.1",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2"
+  },
+  "peerDependencies": {
+    "admin-bro": "^2.0.0-beta.29",
+    "firebase": "^7.9.3"
+  },
+  "dependencies": {
+    "@yarnpkg/pnpify": "^2.0.0-rc.18",
+    "lodash": "^4.17.15"
+  }
+}
