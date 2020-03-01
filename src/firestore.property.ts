@@ -1,5 +1,5 @@
 import { BaseProperty, PropertyType } from 'admin-bro';
-import { Schema, toProperties } from 'admin-bro-firebase/src/utils/schema';
+import { Schema, toProperties } from './utils/schema';
 
 export class FirestoreProperty extends BaseProperty {
   private readonly propertyPosition: number = 0;
@@ -12,7 +12,7 @@ export class FirestoreProperty extends BaseProperty {
     position = 0,
     type = 'string',
     schema,
-    isId= false
+    isId = false,
   }: {
     path: string;
     position?: number;
@@ -20,7 +20,7 @@ export class FirestoreProperty extends BaseProperty {
     type?: PropertyType;
     schema?: Schema;
   }) {
-    super({ path });
+    super({ path, isId });
     this.propertyType = type;
     this.propertyPosition = position;
     this.propertyPath = path;
