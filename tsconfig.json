@@ -5,9 +5,11 @@
     "sourceMap": true,
     "outDir": "lib",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "declaration": true
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "lib"
   ]
 }

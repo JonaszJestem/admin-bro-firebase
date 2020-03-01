@@ -1,6 +1,6 @@
 import { BaseProperty, PropertyType } from 'admin-bro';
-import { isString } from 'admin-bro-firebase/src/utils/type-guards';
 import { FirestoreProperty } from '../firestore.property';
+import { isString } from './type-guards';
 
 export type SchemaItem = {
   type?: PropertyType;
