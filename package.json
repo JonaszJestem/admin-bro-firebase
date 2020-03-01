@@ -1,6 +1,6 @@
 {
   "name": "admin-bro-firebase",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Firebase adapter for admin-bro",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -12,7 +12,7 @@
     "dev": "tsc --watch",
     "lint": "eslint . --ext .ts",
     "style": "prettier --write 'src/**/*.ts'",
-    "prepare": "tsc"
+    "build": "tsc"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.21.0",
