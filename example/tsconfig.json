@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+      "outDir": "./built",
+      "target": "es2018",
+      "esModuleInterop": true,
+      "strictNullChecks": true,
+      "strictPropertyInitialization": false,
+      "strictFunctionTypes": true,
+      "strictBindCallApply": true,
+      "noImplicitThis": true,
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+  },
+  "include": [
+      "./src/**/*",
+      "./spec/**/*"
+  ],
+  "exclude": [
+      "./src/**/*.tsx",
+  ]
+}

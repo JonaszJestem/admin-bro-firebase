@@ -1,9 +1,11 @@
-import { BaseProperty, BaseRecord, BaseResource, Filter } from "admin-bro";
-import firebase from "firebase";
-import { BaseRecordFactory } from "./utils/base-record";
-import { Schema, toProperties } from "./utils/schema";
-import { ParamsType } from "admin-bro/types/src/backend/adapters/base-record";
-import firestoreRepository, { FirestoreRepository } from "./firestore.repository";
+import { BaseProperty, BaseRecord, BaseResource, Filter } from 'admin-bro';
+import firebase from 'firebase';
+import { BaseRecordFactory } from './utils/base-record.factory';
+import { Schema, toProperties } from './utils/schema';
+import { ParamsType } from 'admin-bro/types/src/backend/adapters/base-record';
+import firestoreRepository, {
+  FirestoreRepository,
+} from './firestore.repository';
 import DocumentData = firebase.firestore.DocumentData;
 
 class FirestoreResource extends BaseResource {
@@ -50,9 +52,7 @@ class FirestoreResource extends BaseResource {
   }
 
   property(path): BaseProperty {
-    return toProperties(this.schema).find(
-      property => property.path() === path
-    );
+    return toProperties(this.schema).find(property => property.path() === path);
   }
 
   // TODO: Filtering
