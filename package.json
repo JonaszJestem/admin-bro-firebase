@@ -1,6 +1,6 @@
 {
   "name": "admin-bro-firebase",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Firebase adapter for admin-bro",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
