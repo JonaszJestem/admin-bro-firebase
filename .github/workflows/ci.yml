@@ -26,3 +26,5 @@ jobs:
         run: yarn lint
       - name: Test unit
         run: yarn test
+      - name: Test e2e
+        run: (cd example && yarn && yarn dev & yarn wait-on http://localhost:3000/admin) && yarn test:e2e
