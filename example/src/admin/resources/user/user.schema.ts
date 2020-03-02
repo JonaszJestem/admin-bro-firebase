@@ -4,13 +4,15 @@ export const userSchema: Schema = {
   name: 'string',
   age: 'number',
   isAdmin: 'boolean',
-  location: 'mixed',
+  location: {
+    type: 'object',
+  },
   attributes: {
     type: 'mixed',
     schema: {
       birthdate: 'date',
       height: 'number',
-      eyeColors: 'mixed',
+      eyeColors: 'array',
     },
   },
 };

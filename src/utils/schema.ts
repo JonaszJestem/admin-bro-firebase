@@ -2,8 +2,10 @@ import { BaseProperty, PropertyType } from 'admin-bro';
 import { FirestoreProperty } from '../firestore.property';
 import { isString } from './type-guards';
 
+export type FirestorePropertyType = PropertyType | 'array' | 'object';
+
 export type SchemaItem = {
-  type?: PropertyType;
+  type?: FirestorePropertyType;
   isSortable?: boolean;
   position?: number;
   schema?: Schema;
@@ -14,7 +16,9 @@ const defaultSchemaItemOptions: SchemaItem = {
   isSortable: true,
 };
 
-export type Schema = { [path: string]: SchemaItem | PropertyType } | string[];
+export type Schema =
+  | { [path: string]: SchemaItem | FirestorePropertyType }
+  | string[];
 
 const convertToProperties = (schema: Schema): BaseProperty[] => {
   if (Array.isArray(schema)) {

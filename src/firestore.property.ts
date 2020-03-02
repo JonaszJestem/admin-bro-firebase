@@ -1,10 +1,11 @@
 import { BaseProperty, PropertyType } from 'admin-bro';
-import { Schema, toProperties } from './utils/schema';
+import { FirestorePropertyType, Schema, toProperties } from './utils/schema';
+import { convertToAdminProperty } from './utils/property';
 
 export class FirestoreProperty extends BaseProperty {
   private readonly propertyPosition: number = 0;
   private readonly propertyPath: string;
-  private readonly propertyType: PropertyType;
+  private readonly propertyType: FirestorePropertyType;
   private readonly schema?: Schema;
 
   constructor({
@@ -17,7 +18,7 @@ export class FirestoreProperty extends BaseProperty {
     path: string;
     position?: number;
     isId?: boolean;
-    type?: PropertyType;
+    type?: FirestorePropertyType;
     schema?: Schema;
   }) {
     super({ path, isId });
@@ -55,7 +56,7 @@ export class FirestoreProperty extends BaseProperty {
 
   // TODO: Implement
   isArray(): boolean {
-    return false;
+    return this.propertyType === 'array';
   }
 
   subProperties(): BaseProperty[] {
@@ -70,7 +71,7 @@ export class FirestoreProperty extends BaseProperty {
   }
 
   type(): PropertyType {
-    return this.propertyType;
+    return convertToAdminProperty(this.propertyType);
   }
 
   isSortable(): boolean {
