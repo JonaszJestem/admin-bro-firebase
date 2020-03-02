@@ -1,11 +1,12 @@
 import { BaseProperty, BaseRecord, BaseResource, Filter } from 'admin-bro';
 import firebase from 'firebase';
 import { BaseRecordFactory } from './utils/base-record.factory';
-import { Schema, toProperties } from './utils/schema';
+import { getEmptyInstance, Schema, toProperties } from './utils/schema';
 import { ParamsType } from 'admin-bro/types/src/backend/adapters/base-record';
 import firestoreRepository, {
   FirestoreRepository,
 } from './firestore.repository';
+import { unflatten } from 'flat';
 import DocumentData = firebase.firestore.DocumentData;
 
 class FirestoreResource extends BaseResource {
@@ -100,7 +101,12 @@ class FirestoreResource extends BaseResource {
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
-    const record = await this.repository.create(params);
+    const instance = Object.assign(
+      getEmptyInstance(this.schema),
+      unflatten(params)
+    );
+
+    const record = await this.repository.create(instance);
     return this.toBaseRecord(record);
   }
 

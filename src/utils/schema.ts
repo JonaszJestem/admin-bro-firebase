@@ -41,12 +41,12 @@ const convertToProperties = (schema: Schema): BaseProperty[] => {
 
 const withIdProperty = (properties: BaseProperty[]): BaseProperty[] => {
   return [
-    ...properties,
     new FirestoreProperty({
       type: 'string',
       isId: true,
       path: 'id',
     }),
+    ...properties,
   ];
 };
 
@@ -56,4 +56,22 @@ export const toProperties = (schema: Schema): BaseProperty[] => {
 
 export const getSchemaPaths = (schema: Schema): string[] => {
   return Array.isArray(schema) ? schema : Object.keys(schema);
+};
+
+export const getEmptyInstance = (schema: Schema): Record<string, unknown> => {
+  if (Array.isArray(schema)) {
+    return schema.reduce((constructedObject, currentProperty) => {
+      return { ...constructedObject, [currentProperty]: null };
+    }, {});
+  }
+
+  return Object.entries(schema).reduce((constructedInstance, [key, value]) => {
+    if (!isString(value) && value.schema) {
+      return {
+        ...constructedInstance,
+        [key]: getEmptyInstance(value.schema),
+      };
+    }
+    return { ...constructedInstance, [key]: null };
+  }, {});
 };

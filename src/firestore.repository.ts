@@ -43,4 +43,20 @@ const firestoreRepository = (
   },
 });
 
+const hasOrderOptions = options => options?.sortBy && options?.direction;
+
+export const withOrdering = (query, options) => {
+  if (hasOrderOptions(options)) {
+    return query.orderBy(options.sortBy, options.direction);
+  }
+  return query;
+};
+
+export const withOffset = (query, options) => {
+  if (hasOrderOptions(options) && options.offset) {
+    return query.startAt(options.offset);
+  }
+  return query;
+};
+
 export default firestoreRepository;
