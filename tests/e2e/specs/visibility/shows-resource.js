@@ -1,4 +1,3 @@
-describe("Resource visibility", () => {
-  it("Shows created resource", () => {
-  });
+describe('Resource visibility', () => {
+  it('Shows created resource', () => {});
 });

@@ -11,5 +11,6 @@ module.exports = {
   },
   rules: {
     "prettier/prettier": "error"
-  }
+  },
+  ignorePatterns: ["tests/e2e", "node_modules", "example/node_modules", "lib"],
 };
