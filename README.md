@@ -1,4 +1,6 @@
 # AdminBro Firebase Adapter
+![Build status](https://github.com/JonaszJestem/admin-bro-firebase/workflows/Lint%20and%20test%20application/badge.svg)
+![Maintainability](https://sonarcloud.io/api/project_badges/measure?project=JonaszJestem_admin-bro-firebase&metric=sqale_rating)
 
 Adapter for AdminBro which allows to add your own Firebase resources
 
