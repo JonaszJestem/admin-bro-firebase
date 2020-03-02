@@ -22,15 +22,27 @@ jobs:
             ${{ runner.os }}-node-
       - name: Install dependencies
         run: yarn
+      - uses: actions/upload-artifact@v1
+        with:
+          name: built-application
+          path: .
   lint:
     needs: [build]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: built-application
+          path: .
       - name: Lint code
         run: yarn lint
   test:
     needs: [build, lint]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/download-artifact@v1
+        with:
+          name: built-application
+          path: .
       - name: Test unit
         run: yarn test:units
