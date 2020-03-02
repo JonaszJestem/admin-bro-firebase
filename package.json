@@ -12,6 +12,7 @@
     "dev": "tsc --watch",
     "lint": "eslint . --ext .ts",
     "style": "prettier --write 'src/**/*.ts'",
+    "test": "jest",
     "build": "tsc"
   },
   "devDependencies": {

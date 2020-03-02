@@ -1,0 +1,36 @@
+on: [push]
+name: Lint and test application
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - uses: actions/cache@v1
+        with:
+          path: ~/.cache
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress-
+      - uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: yarn
+  lint:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint code
+        run: yarn lint
+  test:
+    needs: [build, lint]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test unit
+        run: yarn test:units
