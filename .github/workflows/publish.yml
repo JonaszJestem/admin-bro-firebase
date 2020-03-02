@@ -14,6 +14,10 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: yarn
       - run: yarn build
+      - name: Set up identity
+          run: |
+            git config --local user.email "jonasz.wiacek@softwarebrothers.co"
+            git config --local user.name "Firebase AdminBro"
       - run: yarn publish --new-version ${GITHUB_REF##*/}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
