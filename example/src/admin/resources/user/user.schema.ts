@@ -5,8 +5,7 @@ export const userSchema: Schema = {
   age: 'number',
   isAdmin: 'boolean',
   location: {
-    type: 'mixed',
-
+    type: 'object',
   },
   attributes: {
     type: 'mixed',

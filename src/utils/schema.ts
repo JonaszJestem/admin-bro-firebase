@@ -2,7 +2,7 @@ import { BaseProperty, PropertyType } from 'admin-bro';
 import { FirestoreProperty } from '../firestore.property';
 import { isString } from './type-guards';
 
-export type FirestorePropertyType = PropertyType | 'array';
+export type FirestorePropertyType = PropertyType | 'array' | 'object';
 
 export type SchemaItem = {
   type?: FirestorePropertyType;
