@@ -71,10 +71,7 @@ const setupAdmin = async expressApp => {
 
 ## Known Issues
 
-- Arrays and nested object don't work properly
-- Relations don't work properly
-- Cannot pass whole firestore as `database` to `AdminBro`
-- Works only for Firestore. Didn't check the Firebase Database yet.
+Described in Issues tab.
 
 Feel free to contribute.
 
