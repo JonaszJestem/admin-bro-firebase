@@ -1508,12 +1508,13 @@ admin-bro-expressjs@^2.0.0-beta.1:
   resolved "https://registry.yarnpkg.com/admin-bro-expressjs/-/admin-bro-expressjs-2.0.0-beta.1.tgz#23b608877e770d9deb0c479fdf1a545c7c038535"
   integrity sha512-XD24BxPSK1v+6+949eIrBnVXuWLNkhmisJCse3OAJSp/vkjhk8vpi7htPXsrloRWiWNB/lMpayVoaAOuZNbMYg==
 
-admin-bro-firebase@^1.0.10:
-  version "1.0.10"
-  resolved "https://registry.yarnpkg.com/admin-bro-firebase/-/admin-bro-firebase-1.0.10.tgz#b4b753a5ee074f0986fdde12b751a514f4b966f3"
-  integrity sha512-mjCYA7btoYLVlt0I8lb+p11PFL0bq/J+LjqyjflZFSh5zp5gwtnsQjVPt2s82Fnvl3B+lmA7LiatUrwCa2PqYA==
+admin-bro-firebase@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/admin-bro-firebase/-/admin-bro-firebase-1.0.11.tgz#0a42de866b02c3764f7309a4cc6d4e8c463d2f64"
+  integrity sha512-yfn7Da3SZrpTSxS+i0FgjmVZZtY9lv/xMFSWnr1MISZmZSZPgLwO+lNRmP9UsDzvH1WpGFp1RqQJNrVOtAffDQ==
   dependencies:
     "@yarnpkg/pnpify" "^2.0.0-rc.18"
+    flat "^5.0.0"
     lodash "^4.17.15"
 
 admin-bro@^2.0.0-beta.29:
@@ -2673,6 +2674,13 @@ flat@^4.1.0:
   dependencies:
     is-buffer "~2.0.3"
 
+flat@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/flat/-/flat-5.0.0.tgz#dab7d71d60413becb0ac2de9bf4304495e3af6af"
+  integrity sha512-6KSMM+cHHzXC/hpldXApL2S8Uz+QZv+tq5o/L0KQYleoG+GcwrnIJhTWC7tCOiKQp8D/fIvryINU1OZCCwevjA==
+  dependencies:
+    is-buffer "~2.0.4"
+
 flatted@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-2.0.1.tgz#69e57caa8f0eacbc281d2e2cb458d46fdb449e08"
@@ -3048,7 +3056,7 @@ is-binary-path@~2.1.0:
   dependencies:
     binary-extensions "^2.0.0"
 
-is-buffer@^2.0.2, is-buffer@~2.0.3:
+is-buffer@^2.0.2, is-buffer@~2.0.3, is-buffer@~2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
   integrity sha512-Kq1rokWXOPXWuaMAqZiJW4XxsmD9zGx9q4aePabbn3qCRGedtH7Cm+zV8WETitMfu1wdh+Rvd6w5egwSngUX2A==

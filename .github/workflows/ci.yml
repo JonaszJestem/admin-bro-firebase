@@ -15,11 +15,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cypress-
       - uses: actions/cache@v1
+        id: yarn-cache
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
       - name: Install dependencies
         run: yarn
       - name: Lint code
