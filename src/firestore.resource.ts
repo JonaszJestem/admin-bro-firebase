@@ -8,6 +8,7 @@ import firestoreRepository, {
 } from './firestore.repository';
 import { unflatten } from 'flat';
 import { last } from 'lodash';
+import { getFieldToSortBy } from './utils/order';
 import DocumentData = firebase.firestore.DocumentData;
 
 class FirestoreResource extends BaseResource {
@@ -69,24 +70,27 @@ class FirestoreResource extends BaseResource {
       limit?: number;
       offset?: number;
       sort?: { sortBy?: string; direction?: 'asc' | 'desc' };
+    } = {
+      offset: 0,
     }
   ): Promise<BaseRecord[]> {
-    const sortBy = options.sort?.sortBy;
+    const sortBy = getFieldToSortBy(options, this.schema);
+
     const previousPage = (
       await this.repository
         .find()
-        .orderBy(sortBy, options.sort?.direction)
+        .orderBy(sortBy, options.sort.direction)
         .limit(options.offset || options.limit)
         .get()
     ).docs;
 
-    if (options.offset === 0) {
+    if (!options.offset) {
       return previousPage.map(this.toBaseRecord);
     }
     const currentPage = (
       await this.repository
         .find()
-        .orderBy(sortBy, options.sort?.direction)
+        .orderBy(sortBy, options.sort.direction)
         .startAfter(last(previousPage).data()[sortBy])
         .limit(options.limit)
         .get()
@@ -129,6 +133,26 @@ class FirestoreResource extends BaseResource {
 
   private toBaseRecord(record: DocumentData): BaseRecord {
     return this.baseResourceFactory.toBaseRecord(record);
+  }
+
+  async populate(
+    records: BaseRecord[],
+    property: BaseProperty
+  ): Promise<BaseRecord[]> {
+    return records.map(record => {
+      return new BaseRecord(
+        {
+          ...record.toJSON().params,
+          populated: {
+            location: {
+              longitude: 1,
+              latitude: 1,
+            },
+          },
+        },
+        this
+      );
+    });
   }
 }
 

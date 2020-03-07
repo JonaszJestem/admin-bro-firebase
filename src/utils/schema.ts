@@ -1,12 +1,8 @@
 import { BaseProperty, PropertyType } from 'admin-bro';
 import { FirestoreProperty } from '../firestore.property';
-import { isString } from './type-guards';
+import { isReference, isString } from './type-guards';
 
-export type FirestorePropertyType =
-  | PropertyType
-  | 'array'
-  | 'object'
-  | 'reference';
+export type FirestorePropertyType = PropertyType | 'array' | 'object';
 
 export type SchemaItem = {
   type?: FirestorePropertyType;
@@ -15,13 +11,18 @@ export type SchemaItem = {
   schema?: Schema;
 };
 
+export type ReferenceSchemaItem = {
+  referenceName?: string;
+  position?: number;
+};
+
 const defaultSchemaItemOptions: SchemaItem = {
   type: 'string',
   isSortable: true,
 };
 
 export type Schema =
-  | { [path: string]: SchemaItem | FirestorePropertyType }
+  | { [path: string]: SchemaItem | FirestorePropertyType | ReferenceSchemaItem }
   | string[];
 
 const convertToProperties = (schema: Schema): BaseProperty[] => {
@@ -74,7 +75,7 @@ export const getEmptyInstance = (schema: Schema): Record<string, unknown> => {
   }
 
   return Object.entries(schema).reduce((constructedInstance, [key, value]) => {
-    if (!isString(value) && value.schema) {
+    if (!isString(value) && !isReference(value) && value.schema) {
       return {
         ...constructedInstance,
         [key]: getEmptyInstance(value.schema),
