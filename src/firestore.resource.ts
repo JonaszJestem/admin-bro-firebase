@@ -7,6 +7,7 @@ import firestoreRepository, {
   FirestoreRepository,
 } from './firestore.repository';
 import { unflatten } from 'flat';
+import { last } from 'lodash';
 import DocumentData = firebase.firestore.DocumentData;
 
 class FirestoreResource extends BaseResource {
@@ -70,16 +71,28 @@ class FirestoreResource extends BaseResource {
       sort?: { sortBy?: string; direction?: 'asc' | 'desc' };
     }
   ): Promise<BaseRecord[]> {
-    const foundRecords = (
+    const sortBy = options.sort?.sortBy;
+    const previousPage = (
       await this.repository
         .find()
-        .orderBy(options.sort?.sortBy, options.sort?.direction)
-        .startAt(options.offset)
+        .orderBy(sortBy, options.sort?.direction)
+        .limit(options.offset || options.limit)
+        .get()
+    ).docs;
+
+    if (options.offset === 0) {
+      return previousPage.map(this.toBaseRecord);
+    }
+    const currentPage = (
+      await this.repository
+        .find()
+        .orderBy(sortBy, options.sort?.direction)
+        .startAfter(last(previousPage).data()[sortBy])
         .limit(options.limit)
         .get()
     ).docs;
 
-    return foundRecords.map(this.toBaseRecord);
+    return currentPage.map(this.toBaseRecord);
   }
 
   // TODO: Filtering by ids
