@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "outDir": "./built",
-    "target": "es2018",
+    "target": "ES2016",
+    "module": "CommonJS",
     "esModuleInterop": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": false,
@@ -12,6 +13,5 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./src/**/*", "./spec/**/*", "./node_modules/admin-bro-firebase"],
-  "exclude": ["./src/**/*.tsx", "./node_modules/admin-bro-firebase/example"]
+  "include": ["./src/**/*", "./spec/**/*"]
 }
