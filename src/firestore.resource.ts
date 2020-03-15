@@ -135,10 +135,7 @@ class FirestoreResource extends BaseResource {
     return this.baseResourceFactory.toBaseRecord(record);
   }
 
-  async populate(
-    records: BaseRecord[],
-    property: BaseProperty
-  ): Promise<BaseRecord[]> {
+  async populate(records: BaseRecord[]): Promise<BaseRecord[]> {
     return records.map(record => {
       return new BaseRecord(
         {

@@ -1,7 +1,7 @@
 on: [push]
 name: Lint and test application
 jobs:
-  deploy:
+  integrate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -31,4 +31,4 @@ jobs:
       - name: Test unit
         run: yarn test
       - name: Test e2e
-        run: (cd example && yarn && yarn dev & yarn wait-on http://localhost:3000/admin) && yarn test:e2e
+        run: (cd example && yarn && yarn dev & yarn wait-on -t 60000 http://localhost:3000/admin) && yarn test:e2e
