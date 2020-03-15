@@ -12,6 +12,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["./src/**/*", "./spec/**/*"],
-  "exclude": ["./src/**/*.tsx"]
+  "include": ["./src/**/*", "./spec/**/*", "./node_modules/admin-bro-firebase"],
+  "exclude": ["./src/**/*.tsx", "./node_modules/admin-bro-firebase/example"]
 }

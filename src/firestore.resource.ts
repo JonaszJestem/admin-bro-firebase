@@ -13,6 +13,8 @@ import DocumentData = firebase.firestore.DocumentData;
 
 class FirestoreResource extends BaseResource {
   private static DB_TYPE = 'Firestore';
+  private static DEFAULT_RECORDS_LIMIT = 10;
+  private static DEFAULT_SORTING_DIRECTION: 'asc' | 'desc' = 'asc';
 
   private readonly collectionId: string;
   private readonly schema: Schema;
@@ -54,8 +56,11 @@ class FirestoreResource extends BaseResource {
     return toProperties(this.schema);
   }
 
-  property(path): BaseProperty {
-    return toProperties(this.schema).find(property => property.path() === path);
+  property(path): BaseProperty | null {
+    return (
+      toProperties(this.schema).find(property => property.path() === path) ??
+      null
+    );
   }
 
   // TODO: Filtering
@@ -70,17 +75,18 @@ class FirestoreResource extends BaseResource {
       limit?: number;
       offset?: number;
       sort?: { sortBy?: string; direction?: 'asc' | 'desc' };
-    } = {
-      offset: 0,
     }
   ): Promise<BaseRecord[]> {
     const sortBy = getFieldToSortBy(options, this.schema);
+    const limit = options.limit || FirestoreResource.DEFAULT_RECORDS_LIMIT;
+    const direction =
+      options?.sort?.direction || FirestoreResource.DEFAULT_SORTING_DIRECTION;
 
     const previousPage = (
       await this.repository
         .find()
-        .orderBy(sortBy, options.sort.direction)
-        .limit(options.offset || options.limit)
+        .orderBy(sortBy, direction)
+        .limit(options.offset || limit)
         .get()
     ).docs;
 
@@ -90,9 +96,9 @@ class FirestoreResource extends BaseResource {
     const currentPage = (
       await this.repository
         .find()
-        .orderBy(sortBy, options.sort.direction)
+        .orderBy(sortBy, direction)
         .startAfter(last(previousPage).data()[sortBy])
-        .limit(options.limit)
+        .limit(limit)
         .get()
     ).docs;
 

@@ -7,7 +7,7 @@ export class FirestoreProperty extends BaseProperty {
   private readonly propertyPath: string;
   private readonly propertyType: FirestorePropertyType;
   private readonly schema?: Schema;
-  private readonly referenceName: string;
+  private readonly referenceName: string = '';
 
   constructor({
     path,
@@ -15,7 +15,7 @@ export class FirestoreProperty extends BaseProperty {
     type = 'string',
     schema,
     isId = false,
-    referenceName = null,
+    referenceName = '',
   }: {
     path: string;
     position?: number;
