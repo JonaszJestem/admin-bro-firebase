@@ -1517,10 +1517,10 @@ admin-bro-firebase@^1.0.11:
     flat "^5.0.0"
     lodash "^4.17.15"
 
-admin-bro@^2.0.0-beta.29:
-  version "2.0.0-beta.32"
-  resolved "https://registry.yarnpkg.com/admin-bro/-/admin-bro-2.0.0-beta.32.tgz#971913adeaf551e77bd6b5c2ef46a6b8b6d325fa"
-  integrity sha512-dAVpTVLuo+5QvFaOpoBzLJcdh6CvnhFpBKnqg5DSc1QgoSLShgsvqZzjWfWGALgZ1GFXhHmkHEEXgLbhD0qnkQ==
+admin-bro@^2.1.0-beta.11:
+  version "2.1.0-beta.11"
+  resolved "https://registry.yarnpkg.com/admin-bro/-/admin-bro-2.1.0-beta.11.tgz#7707bd43d242b8f0211277267a82dd11697af088"
+  integrity sha512-rxtlL0kpP6Q9hdUARU7mD2sStDJrwwWcNDAWsDG4bNaD6DJKIBNtQBicyKRu6OHFNKCZc4o+kMIkjdzwjwlzzw==
   dependencies:
     "@babel/core" "^7.8.3"
     "@babel/parser" "^7.6.2"

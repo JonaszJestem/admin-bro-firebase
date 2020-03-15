@@ -8,7 +8,7 @@
     "lint": "eslint src --ext ts"
   },
   "dependencies": {
-    "admin-bro": "^2.0.0-beta.29",
+    "admin-bro": "^2.1.0-beta.11",
     "admin-bro-expressjs": "^2.0.0-beta.1",
     "admin-bro-firebase": "^1.0.11",
     "express": "^4.17.1",
