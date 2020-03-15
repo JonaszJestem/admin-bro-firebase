@@ -7,6 +7,7 @@ export class FirestoreProperty extends BaseProperty {
   private readonly propertyPath: string;
   private readonly propertyType: FirestorePropertyType;
   private readonly schema?: Schema;
+  private readonly referenceName: string = '';
 
   constructor({
     path,
@@ -14,16 +15,19 @@ export class FirestoreProperty extends BaseProperty {
     type = 'string',
     schema,
     isId = false,
+    referenceName = '',
   }: {
     path: string;
     position?: number;
     isId?: boolean;
     type?: FirestorePropertyType;
     schema?: Schema;
+    referenceName?: string;
   }) {
     super({ path, isId });
-    this.propertyType = type;
+    this.propertyType = referenceName ? 'reference' : type;
     this.propertyPosition = position;
+    this.referenceName = referenceName;
     this.propertyPath = path;
     this.schema = schema;
   }
@@ -38,6 +42,9 @@ export class FirestoreProperty extends BaseProperty {
 
   // TODO: Implement
   reference(): string {
+    if (this.type() === 'reference') {
+      return this.referenceName;
+    }
     return '';
   }
 

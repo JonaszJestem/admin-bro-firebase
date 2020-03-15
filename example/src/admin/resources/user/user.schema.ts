@@ -4,9 +4,6 @@ export const userSchema: Schema = {
   name: 'string',
   age: 'number',
   isAdmin: 'boolean',
-  location: {
-    type: 'object',
-  },
   attributes: {
     type: 'mixed',
     schema: {
@@ -14,5 +11,8 @@ export const userSchema: Schema = {
       height: 'number',
       eyeColors: 'array',
     },
+  },
+  location: {
+    referenceName: 'Locations',
   },
 };
