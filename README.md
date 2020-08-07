@@ -18,7 +18,7 @@ export const firebaseConfig = {
   // [...]
 };
 
-firebase.initializeApp(firebaseConfig);
+Firebase.initializeApp(firebaseConfig);
 ```
 
 ### Installing

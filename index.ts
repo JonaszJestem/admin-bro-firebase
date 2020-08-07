@@ -11,4 +11,5 @@ export const FirestoreAdapter = {
   Database: FirestoreDatabase,
 };
 
+export * from './authentication/ui';
 export { Schema, SchemaItem };
