@@ -11,7 +11,7 @@
   "scripts": {
     "dev": "tsc --watch",
     "lint": "eslint . --ext .ts",
-    "style": "prettier --write 'src/**/*.ts'",
+    "style": "prettier --write '**/*.ts'",
     "test": "jest",
     "test:e2e": "cypress run",
     "build": "tsc"
@@ -22,7 +22,7 @@
     "@typescript-eslint/eslint-plugin": "^2.21.0",
     "@typescript-eslint/parser": "^2.21.0",
     "admin-bro": "^2.8.0",
-    "cypress": "^4.1.0",
+    "cypress": "^4.12.1",
     "cypress-dotenv": "^1.1.1",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
@@ -53,5 +53,8 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "path-to-regexp": "^6.1.0"
+  },
+  "resolutions": {
+    "cypress": "4.12.1"
   }
 }
