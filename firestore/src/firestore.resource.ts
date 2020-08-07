@@ -58,7 +58,7 @@ class FirestoreResource extends BaseResource {
 
   property(path): BaseProperty | null {
     return (
-      toProperties(this.schema).find((property) => property.path() === path) ??
+      toProperties(this.schema).find(property => property.path() === path) ??
       null
     );
   }
@@ -140,7 +140,7 @@ class FirestoreResource extends BaseResource {
   }
 
   async populate(records: BaseRecord[]): Promise<BaseRecord[]> {
-    return records.map((record) => {
+    return records.map(record => {
       return new BaseRecord(
         {
           ...record.toJSON().params,

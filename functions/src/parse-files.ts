@@ -19,10 +19,10 @@ export type ParseFilesResponse = {
 
 export const parseFiles = (req: Request): Promise<ParseFilesResponse> => {
   if (req.method !== 'POST' || !req.headers['content-type']) {
-    return new Promise((resolve) => resolve({ files: {}, fields: {} }));
+    return new Promise(resolve => resolve({ files: {}, fields: {} }));
   }
   // eslint-disable-next-line consistent-return
-  return new Promise((masterResolve) => {
+  return new Promise(masterResolve => {
     const busboy = new Busboy({ headers: req.headers });
     const tmpdir = os.tmpdir();
 
