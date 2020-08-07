@@ -6,7 +6,7 @@ let firebaseApp;
 const getUserData = async (): Promise<Record<string, unknown>> =>
   new Promise((resolve, reject) => {
     const rejectLogin = setTimeout(reject, 5000);
-    firebaseApp.auth().onAuthStateChanged(function (user) {
+    firebaseApp.auth().onAuthStateChanged(function(user) {
       clearTimeout(rejectLogin);
       resolve(user);
     });
@@ -15,7 +15,7 @@ const getUserData = async (): Promise<Record<string, unknown>> =>
 export const authenticateWithFirebase = async (
   email: string,
   password: string
-): Promise<Record<string, unknown>> => {
+): Promise<Record<string, unknown> | null> => {
   try {
     await firebaseApp.auth().signInWithEmailAndPassword(email, password);
     const user = await getUserData();
