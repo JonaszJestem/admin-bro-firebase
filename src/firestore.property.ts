@@ -84,4 +84,8 @@ export class FirestoreProperty extends BaseProperty {
   isSortable(): boolean {
     return this.type() !== 'mixed' && !this.isArray();
   }
+
+  isRequired(): boolean {
+    return false;
+  }
 }
