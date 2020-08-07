@@ -58,7 +58,7 @@ class FirestoreResource extends BaseResource {
 
   property(path): BaseProperty | null {
     return (
-      toProperties(this.schema).find(property => property.path() === path) ??
+      toProperties(this.schema).find((property) => property.path() === path) ??
       null
     );
   }
@@ -124,10 +124,8 @@ class FirestoreResource extends BaseResource {
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
-    const instance = Object.assign(
-      getEmptyInstance(this.schema),
-      unflatten(params)
-    );
+    const emptyInstance = getEmptyInstance(this.schema);
+    const instance = Object.assign(emptyInstance, unflatten(params));
 
     const record = await this.repository.create(instance);
     return this.toBaseRecord(record);
@@ -142,7 +140,7 @@ class FirestoreResource extends BaseResource {
   }
 
   async populate(records: BaseRecord[]): Promise<BaseRecord[]> {
-    return records.map(record => {
+    return records.map((record) => {
       return new BaseRecord(
         {
           ...record.toJSON().params,

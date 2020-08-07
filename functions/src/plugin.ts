@@ -175,7 +175,7 @@ export const buildHandler = (
       });
     }
 
-    const route = AppRoutes.find(r => r.match(path) && r.method === method);
+    const route = AppRoutes.find((r) => r.match(path) && r.method === method);
     if (route) {
       const params = ((route.match(path) as unknown) as any).params as Record<
         string,
@@ -216,7 +216,7 @@ export const buildHandler = (
       return;
     }
 
-    const asset = AppAssets.find(r => r.match(path));
+    const asset = AppAssets.find((r) => r.match(path));
     if (asset) {
       res.status(200).sendFile(resolve(asset.src));
       return;

@@ -76,6 +76,13 @@ export const getEmptyInstance = (schema: Schema): Record<string, unknown> => {
 
   return Object.entries(schema).reduce((constructedInstance, [key, value]) => {
     if (!isString(value) && !isReference(value) && value.schema) {
+      if (value === 'array' || value?.type === 'array') {
+        return {
+          ...constructedInstance,
+          [key]: [],
+        };
+      }
+
       return {
         ...constructedInstance,
         [key]: getEmptyInstance(value.schema),
