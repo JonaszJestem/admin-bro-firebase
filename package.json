@@ -11,38 +11,51 @@
   "scripts": {
     "dev": "tsc --watch",
     "lint": "eslint . --ext .ts",
-    "style": "prettier --write 'src/**/*.ts'",
+    "style": "prettier --write '**/*.ts'",
     "test": "jest",
     "test:e2e": "cypress run",
     "build": "tsc"
   },
   "devDependencies": {
-    "@types/jest": "^25.1.3",
-    "@typescript-eslint/eslint-plugin": "^2.21.0",
-    "@typescript-eslint/parser": "^2.21.0",
-    "admin-bro": "^2.1.0-beta.11",
-    "cypress": "^4.1.0",
-    "cypress-dotenv": "^1.1.1",
+    "@types/busboy": "^0.2.3",
+    "@types/jest": "^26.0.9",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "admin-bro": "^2.8.0",
+    "cypress": "^4.12.1",
+    "cypress-dotenv": "^1.2.2",
     "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-cypress": "^2.10.3",
-    "eslint-plugin-prettier": "^3.1.2",
-    "firebase": "^7.9.3",
-    "jest": "^25.1.0",
-    "prettier": "^1.19.1",
-    "ts-jest": "^25.2.1",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.2",
-    "wait-on": "^4.0.1"
+    "eslint-plugin-prettier": "^3.1.4",
+    "firebase": "^7.17.2",
+    "firebase-admin": "^9.0.0",
+    "firebase-functions": "^3.9.0",
+    "jest": "^26.2.2",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7",
+    "wait-on": "^5.1.0"
   },
   "peerDependencies": {
-    "admin-bro": "^2.0.0-beta.29",
-    "firebase": "^7.9.3"
+    "admin-bro": "*",
+    "firebase": "^7.x",
+    "firebase-admin": "^9.x",
+    "firebase-functions": "^3.x"
   },
   "dependencies": {
-    "@yarnpkg/pnpify": "^2.0.0-rc.18",
-    "flat": "^5.0.0",
-    "lodash": "^4.17.15"
+    "body-parser": "^1.19.0",
+    "busboy": "^0.3.1",
+    "cookie": "^0.4.1",
+    "firebaseui": "^4.6.1",
+    "flat": "^5.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.19",
+    "path-to-regexp": "^6.1.0"
+  },
+  "resolutions": {
+    "cypress": "4.12.1"
   }
 }

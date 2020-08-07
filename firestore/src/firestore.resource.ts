@@ -124,10 +124,8 @@ class FirestoreResource extends BaseResource {
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
-    const instance = Object.assign(
-      getEmptyInstance(this.schema),
-      unflatten(params)
-    );
+    const emptyInstance = getEmptyInstance(this.schema);
+    const instance = Object.assign(emptyInstance, unflatten(params));
 
     const record = await this.repository.create(instance);
     return this.toBaseRecord(record);
