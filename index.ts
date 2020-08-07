@@ -1,6 +1,10 @@
-import FirestoreResource from './src/firestore.resource';
-import FirestoreDatabase from './src/firestore.database';
-import { Schema, SchemaItem } from './src/utils/schema';
+import FirestoreResource from './firestore/src/firestore.resource';
+import FirestoreDatabase from './firestore/src/firestore.database';
+import { Schema, SchemaItem } from './firestore/src/utils/schema';
+
+export * from './functions/src/parse-files';
+export * from './functions/src/plugin';
+export * from './functions/src/routes';
 
 export default { Resource: FirestoreResource, Database: FirestoreDatabase };
 
