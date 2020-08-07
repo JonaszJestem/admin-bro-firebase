@@ -6,6 +6,9 @@ export * from './functions/src/parse-files';
 export * from './functions/src/plugin';
 export * from './functions/src/routes';
 
-export default { Resource: FirestoreResource, Database: FirestoreDatabase };
+export const FirestoreAdapter = {
+  Resource: FirestoreResource,
+  Database: FirestoreDatabase,
+};
 
 export { Schema, SchemaItem };
