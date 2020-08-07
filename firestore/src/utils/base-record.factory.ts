@@ -15,8 +15,6 @@ export class BaseRecordFactory {
   }
 
   toBaseRecord(record: DocumentData): BaseRecord {
-    console.log(record);
-    console.log(this.schema);
     return new BaseRecord(
       Object.entries({
         ...pick(record.data(), getSchemaPaths(this.schema)),
