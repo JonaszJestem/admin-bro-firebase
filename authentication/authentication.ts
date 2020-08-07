@@ -17,7 +17,6 @@ export const authenticateWithFirebase = async (
   password: string
 ): Promise<Record<string, unknown>> => {
   try {
-    console.log(email);
     await firebaseApp.auth().signInWithEmailAndPassword(email, password);
     const user = await getUserData();
     return user;
@@ -38,7 +37,7 @@ export const setupLogin = (
     firebase: typeof firebaseInstance;
     firebaseConfig: Record<string, unknown>;
     authenticationConfig?: Record<string, unknown>;
-    withRegisterPage: boolean;
+    withRegisterPage?: boolean;
   }
 ) => {
   firebaseApp = firebase;
