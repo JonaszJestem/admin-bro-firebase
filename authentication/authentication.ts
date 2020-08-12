@@ -7,9 +7,9 @@ let firebaseApp;
 const getUserData = async (): Promise<Record<string, unknown>> =>
   new Promise((resolve, reject) => {
     const rejectLogin = setTimeout(reject, 5000);
-    firebaseApp.auth().onAuthStateChanged(function(user) {
+    firebaseApp.auth().onAuthStateChanged(user => {
       clearTimeout(rejectLogin);
-      resolve(user);
+      resolve(user?.toJSON?.());
     });
   });
 
