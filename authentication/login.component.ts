@@ -15,6 +15,6 @@ export const loginComponent = (
     const ui = new firebaseui.auth.AuthUI(firebase.auth());
     ui.start('#app', ${JSON.stringify(
       authConfig ?? defaultAuthenticationConfig
-    )};
+    )});
 </script>
 `;

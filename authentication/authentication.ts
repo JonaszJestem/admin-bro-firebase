@@ -1,12 +1,13 @@
 import { loginPage } from './login.page';
 import { loginComponent } from './login.component';
 import firebaseInstance from 'firebase';
+
 let firebaseApp;
 
 const getUserData = async (): Promise<Record<string, unknown>> =>
   new Promise((resolve, reject) => {
     const rejectLogin = setTimeout(reject, 5000);
-    firebaseApp.auth().onAuthStateChanged(function (user) {
+    firebaseApp.auth().onAuthStateChanged(function(user) {
       clearTimeout(rejectLogin);
       resolve(user);
     });
@@ -32,18 +33,18 @@ export const setupLogin = (
     firebase,
     firebaseConfig,
     authenticationConfig,
-    withRegisterPage,
+    registerPage,
   }: {
     firebase: typeof firebaseInstance;
     firebaseConfig: Record<string, unknown>;
     authenticationConfig?: Record<string, unknown>;
-    withRegisterPage?: boolean;
+    registerPage?: string;
   }
 ) => {
   firebaseApp = firebase;
 
-  if (withRegisterPage) {
-    app.get('/register', (req, res) => {
+  if (registerPage) {
+    app.get(registerPage, (req, res) => {
       res.send(loginPage(loginComponent(firebaseConfig, authenticationConfig)));
     });
   }
