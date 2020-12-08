@@ -120,7 +120,7 @@ class FirestoreResource extends BaseResource {
     updateData: Record<string, unknown>
   ): Promise<ParamsType> {
     const record = await this.repository.updateOne(id, updateData);
-    return this.toBaseRecord(record);
+    return record.data();
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
@@ -128,7 +128,7 @@ class FirestoreResource extends BaseResource {
     const instance = Object.assign(emptyInstance, unflatten(params));
 
     const record = await this.repository.create(instance);
-    return this.toBaseRecord(record);
+    return record.data();
   }
 
   delete(id: string): Promise<void> {
