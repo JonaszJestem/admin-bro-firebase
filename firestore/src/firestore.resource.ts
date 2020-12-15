@@ -1,8 +1,8 @@
-import { BaseProperty, BaseRecord, BaseResource, Filter } from 'admin-bro';
+import { BaseProperty, BaseRecord, BaseResource, Filter } from '@tirrilee/admin-bro';
 import firebase from 'firebase';
 import { BaseRecordFactory } from './utils/base-record.factory';
 import { getEmptyInstance, Schema, toProperties } from './utils/schema';
-import { ParamsType } from 'admin-bro/types/src/backend/adapters/base-record';
+import { ParamsType } from '@tirrilee/admin-bro/types/src/backend/adapters/base-record';
 import firestoreRepository, {
   FirestoreRepository,
 } from './firestore.repository';

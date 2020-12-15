@@ -1,5 +1,5 @@
 import { FirestorePropertyType, ReferenceSchemaItem } from './schema';
-import { PropertyType } from 'admin-bro';
+import { PropertyType } from '@tirrilee/admin-bro';
 
 export const isString = (value): value is string =>
   typeof value === 'string' || value instanceof String;

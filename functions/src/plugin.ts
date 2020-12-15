@@ -1,6 +1,6 @@
 import { Response } from 'firebase-functions';
 import { Request } from 'firebase-functions/lib/providers/https';
-import AdminBro, { AdminBroOptions, CurrentAdmin } from 'admin-bro';
+import AdminBro, { AdminBroOptions, CurrentAdmin } from '@tirrilee/admin-bro';
 import { resolve } from 'path';
 import { match } from 'path-to-regexp';
 import cookie from 'cookie';
