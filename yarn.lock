@@ -2134,10 +2134,10 @@
     "@styled-system/core" "^5.1.2"
     "@styled-system/css" "^5.1.5"
 
-"@tirrilee/admin-bro@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@tirrilee/admin-bro/-/admin-bro-0.0.2.tgz#00a1c8115146c0ee580de2b809671393292155ac"
-  integrity sha512-+mpnJ13bFRKfZSEuYV3dE1XlKlsLMihx/IynNemp8nTjSeQvX3U/657LiePmZH+OC1RPLedPRO0iAAdu9N7UQw==
+"@tirrilee/admin-bro@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/@tirrilee/admin-bro/-/admin-bro-0.0.3.tgz#3c588e4b83044759dd2a4b589772a4f910b0854e"
+  integrity sha512-FauBZipGFahIdCv7v3lBECc3h6TS0szN3a+B/4ucqbnKj1O7isHYkA/220lJCW/YFWF3rlu3KxayuFS8pgtTzg==
   dependencies:
     "@admin-bro/design-system" "^1.7.0"
     "@babel/core" "^7.10.2"
