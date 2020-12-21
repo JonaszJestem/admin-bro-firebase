@@ -10,6 +10,7 @@ import { unflatten } from 'flat';
 import { last } from 'lodash';
 import { getFieldToSortBy } from './utils/order';
 import DocumentData = firebase.firestore.DocumentData;
+import { uploadAndReplaceImageData } from './utils/image';
 
 class FirestoreResource extends BaseResource {
   private static DB_TYPE = 'Firestore';
@@ -119,13 +120,15 @@ class FirestoreResource extends BaseResource {
     id: string,
     updateData: Record<string, unknown>
   ): Promise<ParamsType> {
-    const record = await this.repository.updateOne(id, updateData);
+    const data = uploadAndReplaceImageData(updateData);
+    const record = await this.repository.updateOne(id, data);
     return record.data();
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
+    const data = uploadAndReplaceImageData(params);
     const emptyInstance = getEmptyInstance(this.schema);
-    const instance = Object.assign(emptyInstance, unflatten(params));
+    const instance = Object.assign(emptyInstance, unflatten(data));
 
     const record = await this.repository.create(instance);
     return record.data();
