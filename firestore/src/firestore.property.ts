@@ -1,4 +1,4 @@
-import { BaseProperty, PropertyType } from '@tirrilee/admin-bro';
+import { BaseProperty, PropertyType } from 'admin-bro';
 import { FirestorePropertyType, Schema, toProperties } from './utils/schema';
 import { convertToAdminProperty } from './utils/property';
 

@@ -1,4 +1,4 @@
-import { BaseProperty, PropertyType } from '@tirrilee/admin-bro';
+import { BaseProperty, PropertyType } from 'admin-bro';
 import { FirestoreProperty } from '../firestore.property';
 import { isReference, isString } from './type-guards';
 
