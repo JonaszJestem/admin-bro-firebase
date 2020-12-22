@@ -11,6 +11,7 @@ import { last } from 'lodash';
 import { getFieldToSortBy } from './utils/order';
 import DocumentData = firebase.firestore.DocumentData;
 import { uploadAndReplaceImageData } from './utils/image';
+import moment from 'moment';
 
 class FirestoreResource extends BaseResource {
   private static DB_TYPE = 'Firestore';
@@ -121,12 +122,14 @@ class FirestoreResource extends BaseResource {
     updateData: Record<string, unknown>
   ): Promise<ParamsType> {
     const data = await uploadAndReplaceImageData(updateData);
+    data['updatedAt'] = moment().format('YYYY-MM-DD HH:mm')
     const record = await this.repository.updateOne(id, data);
     return record.data();
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
     const data = await uploadAndReplaceImageData(params);
+    data['createdAt'] = moment().format('YYYY-MM-DD HH:mm')
     const emptyInstance = getEmptyInstance(this.schema);
     const instance = Object.assign(emptyInstance, unflatten(data));
 
