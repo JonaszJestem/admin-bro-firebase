@@ -4,7 +4,8 @@ import jsdom from 'jsdom';
 import stream from 'stream';
 
 export async function uploadAndReplaceImageData(
-  params: Record<string, unknown>
+  collectionId: string,
+  params: Record<string, unknown>,
 ) {
   const data = {...params};
   const now = moment()
@@ -36,7 +37,8 @@ export async function uploadAndReplaceImageData(
           const bufferStream = new stream.PassThrough();
           bufferStream.end(Buffer.from(base64Image, 'base64'));
           const file = bucket.file(
-            dateString + '/' + randomString + '_' + timeText + '.png'
+            collectionId + '/' + dateString + '/'
+              + randomString + '_' + timeText + '.png'
           )
           await new Promise((resolve, reject) => {
             bufferStream.pipe(file.createWriteStream({

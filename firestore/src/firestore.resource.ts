@@ -121,14 +121,20 @@ class FirestoreResource extends BaseResource {
     id: string,
     updateData: Record<string, unknown>
   ): Promise<ParamsType> {
-    const data = await uploadAndReplaceImageData(updateData);
+    const data = await uploadAndReplaceImageData(
+      this.collectionId.toLowerCase(),
+      updateData
+    );
     data['updatedAt'] = moment().format('YYYY-MM-DD HH:mm')
     const record = await this.repository.updateOne(id, data);
     return record.data();
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
-    const data = await uploadAndReplaceImageData(params);
+    const data = await uploadAndReplaceImageData(
+      this.collectionId.toLowerCase(),
+      params
+    );
     data['createdAt'] = moment().format('YYYY-MM-DD HH:mm')
     const emptyInstance = getEmptyInstance(this.schema);
     const instance = Object.assign(emptyInstance, unflatten(data));
