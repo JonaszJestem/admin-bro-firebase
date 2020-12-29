@@ -1,6 +1,6 @@
 {
-  "name": "admin-bro-firebase",
-  "version": "1.0.10",
+  "name": "@tirrilee/admin-bro-firebase",
+  "version": "1.0.40",
   "description": "Firebase adapter for admin-bro",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -21,7 +21,7 @@
     "@types/jest": "^26.0.9",
     "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^3.8.0",
-    "admin-bro": "^2.8.0",
+    "admin-bro": "^3.3.1",
     "cypress": "^4.12.1",
     "cypress-dotenv": "^1.2.2",
     "dotenv": "^8.2.0",
@@ -40,7 +40,6 @@
     "wait-on": "^5.1.0"
   },
   "peerDependencies": {
-    "admin-bro": "*",
     "firebase": "^7.x",
     "firebase-admin": "^9.x",
     "firebase-functions": "^3.x"
@@ -51,9 +50,12 @@
     "cookie": "^0.4.1",
     "firebaseui": "^4.6.1",
     "flat": "^5.0.2",
+    "jsdom": "^16.4.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.19",
-    "path-to-regexp": "^6.1.0"
+    "moment": "^2.29.1",
+    "path-to-regexp": "^6.1.0",
+    "stream": "^0.0.2"
   },
   "resolutions": {
     "cypress": "4.12.1"

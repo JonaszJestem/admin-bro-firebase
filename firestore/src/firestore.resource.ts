@@ -2,7 +2,7 @@ import { BaseProperty, BaseRecord, BaseResource, Filter } from 'admin-bro';
 import firebase from 'firebase';
 import { BaseRecordFactory } from './utils/base-record.factory';
 import { getEmptyInstance, Schema, toProperties } from './utils/schema';
-import { ParamsType } from 'admin-bro/types/src/backend/adapters/base-record';
+import { ParamsType } from 'admin-bro/types/src/backend/adapters/index';
 import firestoreRepository, {
   FirestoreRepository,
 } from './firestore.repository';
@@ -10,6 +10,8 @@ import { unflatten } from 'flat';
 import { last } from 'lodash';
 import { getFieldToSortBy } from './utils/order';
 import DocumentData = firebase.firestore.DocumentData;
+import { uploadAndReplaceImageData } from './utils/image';
+import moment from 'moment';
 
 class FirestoreResource extends BaseResource {
   private static DB_TYPE = 'Firestore';
@@ -119,16 +121,26 @@ class FirestoreResource extends BaseResource {
     id: string,
     updateData: Record<string, unknown>
   ): Promise<ParamsType> {
-    const record = await this.repository.updateOne(id, updateData);
-    return this.toBaseRecord(record);
+    const data = await uploadAndReplaceImageData(
+      this.collectionId.toLowerCase(),
+      updateData
+    );
+    data['updatedAt'] = moment().format('YYYY-MM-DD HH:mm')
+    const record = await this.repository.updateOne(id, data);
+    return record.data();
   }
 
   async create(params: Record<string, unknown>): Promise<ParamsType> {
+    const data = await uploadAndReplaceImageData(
+      this.collectionId.toLowerCase(),
+      params
+    );
+    data['createdAt'] = moment().format('YYYY-MM-DD HH:mm')
     const emptyInstance = getEmptyInstance(this.schema);
-    const instance = Object.assign(emptyInstance, unflatten(params));
+    const instance = Object.assign(emptyInstance, unflatten(data));
 
     const record = await this.repository.create(instance);
-    return this.toBaseRecord(record);
+    return record.data();
   }
 
   delete(id: string): Promise<void> {

@@ -1,5 +1,5 @@
 import { BaseRecord } from 'admin-bro';
-import BaseResource from 'admin-bro/types/src/backend/adapters/base-resource';
+import BaseResource from 'admin-bro/types/src/backend/adapters/resource/base-resource';
 import { getSchemaPaths, Schema } from './schema';
 import { pick } from 'lodash';
 import DocumentData = firebase.firestore.DocumentData;
