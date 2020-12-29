@@ -18,7 +18,7 @@ export async function uploadAndReplaceImageData(
       let result = value as string;
       const doc = new jsdom.JSDOM(result)
       const images = doc.window.document.querySelectorAll('img')
-      const imgSignature = 'data:image/png;base64,'
+      const imgSignature = /data:image\/\w+;base64,/
 
       for (let i = 0; i < images.length; i++) {
         const index = result.search(imgSignature)
@@ -27,23 +27,27 @@ export async function uploadAndReplaceImageData(
           const randomString = Math.random().toString(36).substring(5)
           // 8자리 랜덤 문자
 
-          const dataLength = images[i].getAttribute('src').length
+          const imageData = images[i].getAttribute('src')
+          const dataLength = imageData.length
+          const dataSignature = imageData.split(',')[0];
           const base64Image = result.substring(
-            index + imgSignature.length,
+            index + dataSignature.length + 1,
             index + dataLength
           )
+          const fileType = dataSignature.split(/(:|;)/)[2]
+          const fileExtension = fileType.split('/')[1]
 
           // 이미지 업로드
           const bufferStream = new stream.PassThrough();
           bufferStream.end(Buffer.from(base64Image, 'base64'));
           const file = bucket.file(
             collectionId + '/' + dateString + '/'
-              + randomString + '_' + timeText + '.png'
+              + randomString + '_' + timeText + '.' + fileExtension
           )
           await new Promise((resolve, reject) => {
             bufferStream.pipe(file.createWriteStream({
               metadata: {
-                contentType: 'image/png',
+                contentType: fileType,
                 metadata: {
                   custom: 'metadata'
                 }
